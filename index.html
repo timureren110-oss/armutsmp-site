@@ -1,0 +1,506 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ArmutSMP | Survival Minecraft</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #07120b;
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(4, 12, 7, 0.95);
+            border-bottom: 1px solid #1b4828;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #72e38b;
+        }
+
+        nav a {
+            color: #ddd;
+            text-decoration: none;
+            margin-left: 25px;
+            transition: 0.2s;
+        }
+
+        nav a:hover {
+            color: #72e38b;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 650px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+
+            background:
+                radial-gradient(circle at center, rgba(45, 130, 67, 0.25), transparent 55%);
+        }
+
+        .pear {
+            font-size: 80px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        .hero h1 {
+            font-size: 65px;
+            margin-top: 10px;
+            color: #76f08e;
+            text-shadow: 0 0 25px rgba(85, 255, 120, 0.35);
+        }
+
+        .hero p {
+            color: #b7c8ba;
+            font-size: 19px;
+            margin-top: 10px;
+            max-width: 600px;
+        }
+
+        .version {
+            margin-top: 15px;
+            color: #8ee8a0;
+        }
+
+        /* IP BOX */
+
+        .ip-box {
+            margin-top: 30px;
+            background: #0c1e12;
+            border: 1px solid #28643a;
+            padding: 15px 20px;
+            border-radius: 12px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .ip {
+            font-weight: bold;
+            color: #fff;
+            font-size: 17px;
+        }
+
+        button {
+            border: none;
+            background: #55d86d;
+            color: #061009;
+            font-weight: bold;
+            padding: 11px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #7af28d;
+            transform: translateY(-2px);
+        }
+
+        /* BUTTONS */
+
+        .buttons {
+            margin-top: 25px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .discord {
+            background: #5865f2;
+            color: white;
+        }
+
+        .discord:hover {
+            background: #7280ff;
+        }
+
+        /* SECTIONS */
+
+        section {
+            padding: 80px 8%;
+            text-align: center;
+        }
+
+        section h2 {
+            font-size: 34px;
+            margin-bottom: 35px;
+            color: #76f08e;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .card {
+            background: #0c1e12;
+            border: 1px solid #1c4b2b;
+            border-radius: 15px;
+            padding: 30px 20px;
+            transition: 0.25s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: #55d86d;
+            box-shadow: 0 10px 35px rgba(50, 180, 80, 0.12);
+        }
+
+        .card .icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            color: #8bf49d;
+        }
+
+        .card p {
+            color: #9eafa3;
+            line-height: 1.5;
+        }
+
+        /* SERVER */
+
+        .server-box {
+            max-width: 700px;
+            margin: auto;
+            background: #0c1e12;
+            border: 1px solid #1c4b2b;
+            border-radius: 15px;
+            padding: 30px;
+        }
+
+        .server-status {
+            font-size: 20px;
+            color: #67ed80;
+            margin-bottom: 20px;
+        }
+
+        .server-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .info {
+            background: #08150d;
+            padding: 18px;
+            border-radius: 10px;
+        }
+
+        .info span {
+            display: block;
+            color: #87978c;
+            margin-bottom: 6px;
+        }
+
+        .info strong {
+            color: white;
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid #173c23;
+            color: #718078;
+            background: #050d08;
+        }
+
+        footer b {
+            color: #72e38b;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            nav {
+                padding: 18px 5%;
+            }
+
+            nav .links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 45px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .ip-box {
+                flex-direction: column;
+            }
+
+            .server-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav>
+        <div class="logo">🍐 ARMUTSMP</div>
+
+        <div class="links">
+            <a href="#anasayfa">Ana Sayfa</a>
+            <a href="#ozellikler">Özellikler</a>
+            <a href="#sunucu">Sunucu</a>
+            <a href="#discord">Discord</a>
+        </div>
+    </nav>
+
+
+    <!-- HERO -->
+
+    <div class="hero" id="anasayfa">
+
+        <div class="pear">🍐</div>
+
+        <h1>ARMUTSMP</h1>
+
+        <p>
+            Eğlenceli, özgür ve klasik Survival deneyimine hoş geldin!
+        </p>
+
+        <div class="version">
+            Minecraft 1.20.1 - 1.21.11
+        </div>
+
+        <div class="ip-box">
+
+            <div class="ip" id="serverIP">
+                ArmutSMP.mangoohost.live
+            </div>
+
+            <button onclick="copyIP()">
+                IP Kopyala
+            </button>
+
+        </div>
+
+        <div class="buttons">
+
+            <button onclick="copyIP()">
+                🎮 Sunucuya Katıl
+            </button>
+
+            <button class="discord" onclick="openDiscord()">
+                💬 Discord
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- FEATURES -->
+
+    <section id="ozellikler">
+
+        <h2>Sunucu Özellikleri</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="icon">🌎</div>
+                <h3>Survival</h3>
+                <p>
+                    Kendi dünyanı kur, kaynaklarını topla ve hayatta kal.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">⚔️</div>
+                <h3>PvP</h3>
+                <p>
+                    Diğer oyuncularla savaş ve en güçlü oyuncu ol.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">💰</div>
+                <h3>Ekonomi</h3>
+                <p>
+                    Para kazan, eşya sat ve kendi ekonomini oluştur.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🎁</div>
+                <h3>Kitler</h3>
+                <p>
+                    Özel kitleri kullanarak macerana hızlı başla.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🏪</div>
+                <h3>Market</h3>
+                <p>
+                    Eşyalarını sat, alışveriş yap ve ekonomide yüksel.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🍐</div>
+                <h3>ArmutSMP</h3>
+                <p>
+                    Topluluğumuzla birlikte eğlenceli bir SMP deneyimi yaşa.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SERVER -->
+
+    <section id="sunucu">
+
+        <h2>Sunucu Bilgileri</h2>
+
+        <div class="server-box">
+
+            <div class="server-status">
+                ● Sunucu Bilgileri
+            </div>
+
+            <div class="server-info">
+
+                <div class="info">
+                    <span>Sunucu IP</span>
+                    <strong>ArmutSMP.mangoohost.live</strong>
+                </div>
+
+                <div class="info">
+                    <span>Sürüm</span>
+                    <strong>1.20.1 - 1.21.11</strong>
+                </div>
+
+                <div class="info">
+                    <span>Tür</span>
+                    <strong>Survival SMP</strong>
+                </div>
+
+                <div class="info">
+                    <span>Platform</span>
+                    <strong>Minecraft Java</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- DISCORD -->
+
+    <section id="discord">
+
+        <h2>Topluluğa Katıl</h2>
+
+        <p style="color:#9eafa3; margin-bottom:25px;">
+            Oyuncularla sohbet etmek ve sunucu duyurularını takip etmek için Discord'a katıl.
+        </p>
+
+        <button class="discord" onclick="openDiscord()">
+            💬 Discord'a Katıl
+        </button>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+        🍐 <b>ARMUTSMP</b> © 2026
+        <br>
+        Survival SMP
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        function copyIP() {
+
+            const ip = "ArmutSMP.mangoohost.live";
+
+            navigator.clipboard.writeText(ip);
+
+            alert("Sunucu IP adresi kopyalandı! 🍐");
+
+        }
+
+
+        function openDiscord() {
+
+            // BURAYA KENDI DISCORD LINKINI YAZ
+            window.open("https://discord.com/", "_blank");
+
+        }
+
+    </script>
+
+</body>
+</html>
+
